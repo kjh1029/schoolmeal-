@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>안산고등학교 급식 정보</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <i class="fas fa-utensils header-icon"></i>
+        <h1>안산고등학교 급식 정보</h1>
+        <p class="header-subtitle">건강한 학교 급식을 확인하세요</p>
+      </div>
+    </header>
+    
+    <main>
+      <div class="date-selector">
+        <div class="date-input-group">
+          <i class="fas fa-calendar-alt"></i>
+          <label for="meal-date">날짜 선택</label>
+          <input type="date" id="meal-date" name="meal-date">
+          <button id="search-btn">
+            <i class="fas fa-search"></i>
+            급식 정보 조회
+          </button>
+        </div>
+        
+        <div class="allergy-filter-section">
+          <h3><i class="fas fa-exclamation-triangle"></i> 알레르기 필터</h3>
+          <div class="allergy-filter-grid">
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-1" value="난류">
+              <span>난류</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-2" value="우유">
+              <span>우유</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-3" value="메밀">
+              <span>메밀</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-4" value="밀">
+              <span>밀</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-5" value="대두">
+              <span>대두</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-6" value="돼지고기">
+              <span>돼지고기</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-7" value="복숭아">
+              <span>복숭아</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-8" value="토마토">
+              <span>토마토</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-9" value="아황산류">
+              <span>아황산류</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-10" value="호두">
+              <span>호두</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-12" value="새우">
+              <span>새우</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-13" value="고등어">
+              <span>고등어</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-14" value="오징어">
+              <span>오징어</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-15" value="조개류">
+              <span>조개류</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-16" value="닭고기">
+              <span>닭고기</span>
+            </label>
+            <label class="allergy-checkbox">
+              <input type="checkbox" id="allergy-17" value="소고기">
+              <span>소고기</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div id="loading" class="loading hidden">
+        <div class="loading-spinner">
+          <i class="fas fa-spinner fa-spin"></i>
+          <p>급식 정보를 불러오는 중...</p>
+        </div>
+      </div>
+      
+      <div id="meal-info" class="meal-info">
+        <div class="meal-header">
+          <h2 id="meal-date-display"></h2>
+          <div class="meal-stats" id="meal-stats">
+            <div class="stat-item">
+              <i class="fas fa-fire"></i>
+              <span class="stat-label">총 칼로리</span>
+              <span class="stat-value" id="total-calories">-</span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span class="stat-label">알레르기 주의</span>
+              <span class="stat-value" id="allergy-count">-</span>
+            </div>
+          </div>
+        </div>
+        <div id="meal-content">
+          <p>날짜를 선택하고 조회 버튼을 눌러주세요.</p>
+        </div>
+      </div>
+      
+      <div id="error-message" class="error-message hidden">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>급식 정보를 불러올 수 없습니다. 다시 시도해주세요.</p>
+      </div>
+    </main>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+
+</html>

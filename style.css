@@ -1,0 +1,524 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+header {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.header-icon {
+  font-size: 3em;
+  margin-bottom: 15px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+header h1 {
+  font-size: 2.8em;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+.header-subtitle {
+  font-size: 1.1em;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+main {
+  padding: 40px;
+}
+
+.date-selector {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.date-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.date-input-group i {
+  font-size: 1.5em;
+  color: #4CAF50;
+}
+
+.date-input-group label {
+  font-size: 1.3em;
+  font-weight: 500;
+  color: #333;
+}
+
+#meal-date {
+  padding: 15px 20px;
+  font-size: 1.1em;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#meal-date:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+#search-btn {
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#search-btn:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+#search-btn:active {
+  transform: translateY(0);
+}
+
+.allergy-filter-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+}
+
+.allergy-filter-section h3 {
+  color: #ff9800;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1em;
+}
+
+.allergy-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.allergy-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fafafa;
+}
+
+.allergy-checkbox:hover {
+  background: #fff3e0;
+  border-color: #ff9800;
+}
+
+.allergy-checkbox input[type="checkbox"] {
+  accent-color: #ff9800;
+}
+
+.allergy-checkbox input[type="checkbox"]:checked + span {
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.loading-spinner i {
+  font-size: 3em;
+  color: #4CAF50;
+}
+
+.loading-spinner p {
+  font-size: 1.3em;
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+.meal-info {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 15px;
+  padding: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.meal-header {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.meal-header h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.meal-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item i {
+  font-size: 1.5em;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.stat-value {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+#meal-content {
+  padding: 30px;
+}
+
+.meal-type {
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+}
+
+.meal-type.has-allergy-warning {
+  border: 2px solid #ff9800;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+}
+
+.meal-type-header {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meal-type-header.has-allergy {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+}
+
+.meal-type-header h3 {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.meal-type-header i {
+  font-size: 1.3em;
+}
+
+.meal-content-wrapper {
+  padding: 25px;
+}
+
+.meal-menu {
+  line-height: 1.8;
+  color: #555;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.meal-menu-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meal-menu-item:last-child {
+  border-bottom: none;
+}
+
+.meal-menu-item:hover {
+  color: #4CAF50;
+  padding-left: 10px;
+}
+
+.meal-menu-item.allergy-warning {
+  background: #fff3e0;
+  border-color: #ff9800;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin: 5px 0;
+}
+
+.allergy-info {
+  background: linear-gradient(135deg, #fff3e0, #ffffff);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 15px;
+  border: 1px solid #ff9800;
+}
+
+.allergy-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.allergy-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.allergy-tag {
+  background: #ff9800;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.allergy-tag.matched {
+  background: #f44336;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.5; }
+}
+
+.nutrition-info {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 15px;
+  border: 1px solid #e9ecef;
+}
+
+.nutrition-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.nutrition-item {
+  text-align: center;
+  background: white;
+  padding: 15px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.nutrition-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nutrition-label {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.nutrition-value {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #4CAF50;
+}
+
+.nutrition-unit {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.error-message {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  color: #c62828;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(198, 40, 40, 0.1);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.error-message i {
+  font-size: 2em;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 10px;
+    border-radius: 15px;
+  }
+  
+  header {
+    padding: 30px 15px;
+  }
+  
+  header h1 {
+    font-size: 2.2em;
+  }
+  
+  main {
+    padding: 25px;
+  }
+  
+  .date-input-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #meal-date, #search-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .meal-stats {
+    gap: 15px;
+  }
+  
+  .nutrition-grid, .allergy-filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .nutrition-grid, .allergy-filter-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-item {
+    padding: 12px 15px;
+  }
+}
